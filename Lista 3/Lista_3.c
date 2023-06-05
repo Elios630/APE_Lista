@@ -9,7 +9,8 @@ int le_valida_positivo();
 int main() {
     
     typedef struct {
-		char marca[40], site[40], uf[2], telefone[14];
+		char marca[40], site[40], uf[2];
+        int ddd, telPrim, telSeg;
 	}Fabricante;
 
 	typedef struct {
@@ -19,7 +20,7 @@ int main() {
         Fabricante fabricante;
 	}Produto;
 
-    char DDD[2], DDDTotal[10], telefoneTotal[14], quatroPrimero[4], quatroUltimo[4], uf[2], bufferTel[14], bufferUF[2];
+    char DDD[2], DDDTotal[10], telefoneTotal[14], quatroPrimero[4], quatroUltimo[4], uf[2], bufferUF[2];
 	int i=0, j=0, conFab=0, escolha, conProd, acabar=0,  validado=10;
     float maisCaro=0, maisBarato=10000;
     Fabricante fabricante[5];
@@ -36,21 +37,11 @@ int main() {
 		scanf("%s", &fabricante[i].site);
 
         printf("Informe o DDD: ");
-		scanf("%s", &DDD);
-        strcat(DDDTotal, "(");
-        strcat(DDDTotal, DDD);
-        strcat(DDDTotal, ") ");
+		fabricante[i].ddd=le_valida_positivo();
         printf("Informe os primero quatro numeros do telefone: ");
-		scanf("%s", &quatroPrimero);
-        strcat(DDDTotal, quatroPrimero);
+		fabricante[i].telPrim=le_valida_positivo();
         printf("Informe os ultimos quatro numeros do telefone: ");
-		scanf("%s", &quatroUltimo);
-        strcat(telefoneTotal, DDDTotal);
-        strcat(telefoneTotal, "-");
-        strcat(telefoneTotal, quatroUltimo);
-        for (j = 0; j < 14; j++){
-            fabricante[i].telefone[j]=telefoneTotal[j];
-        }
+		fabricante[i].telPrim=le_valida_positivo();
 
         do{
             printf("Informe a UF do Fabricante: ");
@@ -85,36 +76,26 @@ int main() {
                 scanf("%s", &fabricante[conFab].site);
 
                 printf("Informe o DDD: ");
-                scanf("%s", &DDD);
-                strcat(DDDTotal, "(");
-                strcat(DDDTotal, DDD);
-                strcat(DDDTotal, ") ");
+                fabricante[conFab].ddd=le_valida_positivo();
                 printf("Informe os primero quatro numeros do telefone: ");
-                scanf("%s", &quatroPrimero);
-                strcat(DDDTotal, quatroPrimero);
+                fabricante[conFab].telPrim=le_valida_positivo();
                 printf("Informe os ultimos quatro numeros do telefone: ");
-                scanf("%s", &quatroUltimo);
-                strcat(telefoneTotal, DDDTotal);
-                strcat(telefoneTotal, "-");
-                strcat(telefoneTotal, quatroUltimo);
-                for (j = 0; j < 14; j++){
-                    fabricante[conFab].telefone[j]=telefoneTotal[j];
-                    }
+                fabricante[conFab].telPrim=le_valida_positivo();
 
-                    do{
-                        printf("Informe a UF do Fabricante: ");
-                        scanf("%s", &uf);
+                do{
+                    printf("Informe a UF do Fabricante: ");
+                    scanf("%s", &uf);
                         
-                        for (j = 0; j < 2; j++){
-                            uf[j]=toupper(uf[j]);
-                        }
-                    validado=le_valida_uf(uf, validado);
-                    } while (validado==10);
-
                     for (j = 0; j < 2; j++){
-                            fabricante[conFab].uf[j]=uf[j];
+                        uf[j]=toupper(uf[j]);
                     }
-                    validado=10;
+                    validado=le_valida_uf(uf, validado);
+                } while (validado==10);
+
+                for (j = 0; j < 2; j++){
+                    fabricante[conFab].uf[j]=uf[j];
+                }
+                validado=10;
 
                 conFab++;
                 break;
@@ -291,16 +272,12 @@ int main() {
                 printf("Marca\t|\tSite\t\t|\tTelefone\t|\tUF\n");
                 
                 for (i = 0; i < conFab; i++){
-                    bufferTel[0] = '\0';
-                    for (j = 0; j < 14; j++){
-                    bufferTel[j]=fabricante[i].telefone[j];
-                    }
                     bufferUF[0] = '\0';
                     for (j = 0; j < 2; j++){
                     bufferUF[j]=fabricante[i].uf[j];
                     }
                     printf("--------+-----------------------+-----------------------+------------\n");
-                    printf("%s\t|\t%s\t|\t%s\t|\t%s\n", fabricante[i].marca, fabricante[i].site, bufferTel, bufferUF);
+                    printf("%s\t|\t%s\t|\t(%d)%d-%d\t|\t%s\n", fabricante[i].marca, fabricante[i].site, fabricante[i].ddd, fabricante[i].telPrim, fabricante[i].telSeg, bufferUF);
                 }
                 printf("--------+-----------------------+-----------------------+------------\n");
                 printf("\n");
