@@ -23,7 +23,7 @@ int main() {
 	int i=0, j=0, conFab=0, escolha, conProd, acabar=0,  validado=10;
     float maisCaro=0, maisBarato=10000;
     Fabricante fabricante[5];
-    Produto produto[50];
+    Produto produto[50], aux;
     
     
     
@@ -318,11 +318,11 @@ int main() {
                 printf("==================================================================================================================================================\n");
                 printf("                                              RELATORIO 2 -LISTA DE TODOS OS PRODUTOS\n");
                 printf("==================================================================================================================================================\n");
-                printf("Descricao\t\t|\tMarca\t|\tpeso\t|\tV. de compra\t|\tV. de venda\t|\tLucro\t|\tPer. de lucro\n");
+                printf("Descricao\t|\tMarca\t|\tpeso\t|\tV. de compra\t|\tV. de venda\t|\tLucro\t\t|\tPer. de lucro\n");
 
                 for (i = 0; i < conProd; i++){
                     printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
-                    printf("%s\t\t|\t%s\t|\t%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f\n", produto[i].descricao, produto[i].fabricante.marca, produto[i].peso, produto[i].valorCompra, produto[i].valorVenda, produto[i].valorLucro, produto[i].percenLucro);
+                    printf("%s\t|\t%s\t|\t%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f\n", produto[i].descricao, produto[i].fabricante.marca, produto[i].peso, produto[i].valorCompra, produto[i].valorVenda, produto[i].valorLucro, produto[i].percenLucro);
                 }
                 printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
                 printf("\n");
@@ -406,13 +406,100 @@ int main() {
                 }
                 break;
             case 7:
-                /* code */
+                printf("==================================================================================================================================================\n");
+                printf("                                              RELATORIO 7 - PRODUTOS EM ORDEM CRESCENTE DE VALOR DE VENDA\n");
+                printf("==================================================================================================================================================\n");
+
+                for(i=0;i<conProd-1;i++){
+                    for(j=0;j<conProd;j++){
+                        if(produto[j].valorVenda>produto[j+1].valorVenda){
+                            aux = produto[j+1];
+                            produto[j+1] = produto[j];
+                            produto[j] = aux;
+                        }			
+                    }		
+                }
+                        
+               printf("Descricao\t|\tMarca\t|\tpeso\t|\tV. de compra\t|\tV. de venda\t|\tLucro\t\t|\tPer. de lucro\n");
+                for (i = 0; i < conProd; i++){
+                    printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
+                    printf("%s\t|\t%s\t|\t%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f\n", produto[i].descricao, produto[i].fabricante.marca, produto[i].peso, produto[i].valorCompra, produto[i].valorVenda, produto[i].valorLucro, produto[i].percenLucro);
+                }
+                printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
+                printf("\n");
+                do{
+                    printf("- [0] Voltar para tela principal\n");
+                    printf("- [9] Sair do programa\n");
+                    printf("==================================================================================================================================================\n");
+                    scanf("%d", &escolha);
+                } while (escolha!=9 && escolha!=0);
+                if (escolha==9){
+                   acabar=1000;
+                }
                 break;
             case 8:
-                /* code */
+                printf("==================================================================================================================================================\n");
+                printf("                                         RELATORIO 8 - PRODUTOS EM ORDEM CRESCENTE DE MAIOR \"VALOR DE LUCRO\"\n");
+                printf("==================================================================================================================================================\n");
+
+                for(i=0;i<conProd-1;i++){
+                    for(j=0;j<conProd;j++){
+                        if(produto[j].valorLucro>produto[j+1].valorLucro){
+                            aux = produto[j+1];
+                            produto[j+1] = produto[j];
+                            produto[j] = aux;
+                        }			
+                    }		
+                }
+                        
+               printf("Descricao\t|\tMarca\t|\tpeso\t|\tV. de compra\t|\tV. de venda\t|\tLucro\t\t|\tPer. de lucro\n");
+                for (i = 0; i < conProd; i++){
+                    printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
+                    printf("%s\t|\t%s\t|\t%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f\n", produto[i].descricao, produto[i].fabricante.marca, produto[i].peso, produto[i].valorCompra, produto[i].valorVenda, produto[i].valorLucro, produto[i].percenLucro);
+                }
+                printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
+                printf("\n");
+                do{
+                    printf("- [0] Voltar para tela principal\n");
+                    printf("- [9] Sair do programa\n");
+                    printf("==================================================================================================================================================\n");
+                    scanf("%d", &escolha);
+                } while (escolha!=9 && escolha!=0);
+                if (escolha==9){
+                   acabar=1000;
+                }
                 break;
             case 9:
-                /* code */
+                printf("==================================================================================================================================================\n");
+                printf("                                         RELATORIO 9 - PRODUTOS EM ORDEM CRESCENTE DE MAIOR \"PERCENTUAL DE LUCRO\"\n");
+                printf("==================================================================================================================================================\n");
+
+                for(i=0;i<conProd;i++){
+                    for(j=0;j<conProd;j++){
+                        if(produto[j].percenLucro>produto[j+1].percenLucro){
+                            aux = produto[j+1];
+                            produto[j+1] = produto[j];
+                            produto[j] = aux;
+                        }			
+                    }		
+                }
+                        
+               printf("Descricao\t|\tMarca\t|\tpeso\t|\tV. de compra\t|\tV. de venda\t|\tLucro\t\t|\tPer. de lucro\n");
+                for (i = 0; i < conProd; i++){
+                    printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
+                    printf("%s\t|\t%s\t|\t%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f\n", produto[i].descricao, produto[i].fabricante.marca, produto[i].peso, produto[i].valorCompra, produto[i].valorVenda, produto[i].valorLucro, produto[i].percenLucro);
+                }
+                printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
+                printf("\n");
+                do{
+                    printf("- [0] Voltar para tela principal\n");
+                    printf("- [9] Sair do programa\n");
+                    printf("==================================================================================================================================================\n");
+                    scanf("%d", &escolha);
+                } while (escolha!=9 && escolha!=0);
+                if (escolha==9){
+                   acabar=1000;
+                }
                 break;
             case 0:
                 acabar=1000;
