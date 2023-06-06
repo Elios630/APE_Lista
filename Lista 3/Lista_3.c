@@ -20,7 +20,7 @@ int main() {
         Fabricante fabricante;
 	}Produto;
 
-    char DDD[2], DDDTotal[10], telefoneTotal[14], quatroPrimero[4], quatroUltimo[4], uf[2], bufferUF[2];
+    char DDD[2], DDDTotal[10], telefoneTotal[14], quatroPrimero[4], quatroUltimo[4], uf[2], bufferUF[2], pesUF[2], pesMarca[40];
 	int i=0, j=0, conFab=0, escolha, conProd, acabar=0,  validado=10;
     float maisCaro=0, maisBarato=10000;
     Fabricante fabricante[5];
@@ -277,7 +277,7 @@ int main() {
                     bufferUF[j]=fabricante[i].uf[j];
                     }
                     printf("--------+-----------------------+-----------------------+------------\n");
-                    printf("%s\t|\t%s\t|\t(%d)%d-%d\t|\t%s\n", fabricante[i].marca, fabricante[i].site, fabricante[i].ddd, fabricante[i].telPrim, fabricante[i].telSeg, bufferUF);
+                    printf("%s\t|\t%s\t|\t(%d)%d-%d\t|\t%c%c\n", fabricante[i].marca, fabricante[i].site, fabricante[i].ddd, fabricante[i].telPrim, fabricante[i].telSeg, bufferUF[0], bufferUF[1]);
                 }
                 printf("--------+-----------------------+-----------------------+------------\n");
                 printf("\n");
@@ -313,11 +313,85 @@ int main() {
                    acabar=1000;
                 }
                 break;
+
             case 3:
-                /* code */
+                printf("=====================================================================\n");
+                printf("        RELATORIO 3 -LISTA DE TODOS OS PRODUTOS DE UM ESTADO\n");
+                printf("=====================================================================\n");
+
+                do{
+                    printf("Informe a UF do estado: ");
+                    scanf("%s", &uf);
+                    
+                    for (j = 0; j < 2; j++){
+                        uf[j]=toupper(uf[j]);
+                    }
+                validado=le_valida_uf(uf, validado);
+                } while (validado==10);
+
+                printf("Marca\t|\tSite\t\t|\tUF\n");
+
+                for (j = 0; j < 2; j++){
+                    pesUF[j]=uf[j];
+                }
+                
+                for (i = 0; i < conFab; i++){
+                    if (fabricante[i].uf[0]==uf[0]){
+                        if (fabricante[i].uf[1]==uf[1]){
+                            bufferUF[0] = '\0';
+                        for (j = 0; j < 2; j++){
+                        bufferUF[j]=fabricante[i].uf[j];
+                        }
+                        printf("--------+-----------------------+------------\n");
+                        printf("%s\t|\t%s\t|\t%c%c\n", fabricante[i].marca, fabricante[i].site, bufferUF[0], bufferUF[1]);
+                        }
+                    }
+                    
+                    
+                }
+                printf("--------+-----------------------+------------\n");
+                printf("\n");
+                do{
+                    printf("- [0] Voltar para tela principal\n");
+                    printf("- [9] Sair do programa\n");
+                    printf("=====================================================================\n");
+                    scanf("%d", &escolha);
+                } while (escolha!=9 && escolha!=0);
+                if (escolha==9){
+                   acabar=1000;
+                }
+
                 break;
             case 4:
-                /* code */
+                printf("=====================================================================\n");
+                printf("            RELATORIO 4 -LISTA DE TODOS OS PRODUTOS DE UMA MARCA\n");
+                printf("=====================================================================\n");
+
+                printf("Informe o nome do fabricante %d: ", i+1);
+		        scanf("%s", &pesMarca);
+
+                printf("Marca\t|\tSite\t\t|\tUF\n");
+                
+                for (i = 0; i < conFab; i++){
+                    if (fabricante[i].marca==pesMarca){
+
+                    printf("--------+-----------------------+------------\n");
+                    printf("%s\t|\t%s\t|\t%s\n", fabricante[i].marca, fabricante[i].site, bufferUF);
+                        
+                    }
+                }
+                
+                printf("--------+-----------------------+------------\n");
+                printf("\n");
+                do{
+                    printf("- [0] Voltar para tela principal\n");
+                    printf("- [9] Sair do programa\n");
+                    printf("=====================================================================\n");
+                    scanf("%d", &escolha);
+                } while (escolha!=9 && escolha!=0);
+                if (escolha==9){
+                   acabar=1000;
+                }
                 break;
             case 5:
                 printf("===============================================================================\n");
