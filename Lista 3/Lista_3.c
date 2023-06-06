@@ -20,7 +20,7 @@ int main() {
         Fabricante fabricante;
 	}Produto;
 
-    char DDD[2], DDDTotal[10], telefoneTotal[14], quatroPrimero[4], quatroUltimo[4], uf[2], bufferUF[2], pesUF[2], pesMarca[40];
+    char uf[2], bufferUF[2], pesUF[2], pesMarca[40];
 	int i=0, j=0, conFab=0, escolha, conProd, acabar=0,  validado=10;
     float maisCaro=0, maisBarato=10000;
     Fabricante fabricante[5];
