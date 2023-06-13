@@ -257,6 +257,7 @@ int main() {
         printf("- [A] Listar todos os produtos em ordem alfabética crescente A-Z\n");
         printf("- [Z] Listar todas as marcas em ordem alfabética decrescente Z-A\n");
         printf("- [0] Sair do programa\n");
+        fflush(stdin);
         scanf("%c", &menu);
         
 
@@ -754,7 +755,7 @@ void ordenaVenda(Produto* produto, int conProd){
 	Produto aux;
 
      for(i=0;i<conProd;i++){
-        for(j=0;j<conProd;j++){
+        for(j=0;j<conProd-i-1;j++){
             if(produto[j].valorVenda>produto[j+1].valorVenda){
                 aux = produto[j+1];
                 produto[j+1] = produto[j];
@@ -769,7 +770,7 @@ void ordenaLucro(Produto* produto, int conProd){
 	
 	Produto aux;
     for(i=0;i<conProd-1;i++){
-        for(j=0;j<conProd;j++){
+        for(j=0;j<conProd-i-1;j++){
             if(produto[j].valorLucro>produto[j+1].valorLucro){
                 aux = produto[j+1];
                 produto[j+1] = produto[j];
@@ -785,7 +786,7 @@ void ordenaPerLucro(Produto* produto, int conProd){
 	Produto aux;
     
     for(i=0;i<conProd;i++){
-        for(j=0;j<conProd;j++){
+        for(j=0;j<conProd-i-1;j++){
             if(produto[j].percenLucro>produto[j+1].percenLucro){
                 aux = produto[j+1];
                 produto[j+1] = produto[j];
