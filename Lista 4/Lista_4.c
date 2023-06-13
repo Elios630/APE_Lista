@@ -353,18 +353,19 @@ int main() {
                 printf("=====================================================================\n");
                 printf("            RELATORIO 4 - LISTA DE TODOS OS PRODUTOS DE UMA MARCA\n");
                 printf("=====================================================================\n");
+                
+                
 
                 printf("Informe o nome do fabricante %d: ", i+1);
 		        scanf("%s", &pesMarca);
 
-                printf("Marca\t|\tSite\t\t|\tUF\n");
-                
-                for (i = 0; i < conFab; i++){
-                    if (fabricante[i].marca==pesMarca){
-
-                    printf("--------+-----------------------+------------\n");
-                    printf("%s\t|\t%s\t|\t%s\n", fabricante[i].marca, fabricante[i].site, bufferUF);
-                        
+                printf("Descricao\t|\tMarca\t|\tpeso\t|\tV. de compra\t|\tV. de venda\t|\tLucro\t\t|\tPer. de lucro\n");
+                printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
+					
+                for (i = 0; i < conProd; i++){
+                    if (strcmp(produto[i].fabricante.marca,pesMarca)==0){
+                    	printf("%s\t|\t%s\t|\t%d\t|\t%f\t|\t%f\t|\t%f\t|\t%f\n", produto[i].descricao, produto[i].fabricante.marca, produto[i].peso, produto[i].valorCompra, produto[i].valorVenda, produto[i].valorLucro, produto[i].percenLucro);
+				    	printf("------------------------+---------------+---------------+-----------------------+-----------------------+---------------+-------------------------\n");
                     }
                 }
                 
