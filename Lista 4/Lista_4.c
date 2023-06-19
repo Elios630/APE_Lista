@@ -45,7 +45,7 @@ int main() {
         printf("Informe os primero quatro numeros do telefone: ");
 		fabricante[i].telPrim=le_valida_positivo();
         printf("Informe os ultimos quatro numeros do telefone: ");
-		fabricante[i].telPrim=le_valida_positivo();
+		fabricante[i].telSeg=le_valida_positivo();
 
         do{
             printf("Informe a UF do Fabricante: ");
@@ -84,7 +84,7 @@ int main() {
                 printf("Informe os primero quatro numeros do telefone: ");
                 fabricante[conFab].telPrim=le_valida_positivo();
                 printf("Informe os ultimos quatro numeros do telefone: ");
-                fabricante[conFab].telPrim=le_valida_positivo();
+                fabricante[conFab].telSeg=le_valida_positivo();
 
                 do{
                     printf("Informe a UF do Fabricante: ");
