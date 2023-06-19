@@ -549,7 +549,7 @@ int main() {
                    acabar=1000;
                 }
                 break;
-            case 0:
+            case '0':
                 acabar=1000;
                 break;
             default:
